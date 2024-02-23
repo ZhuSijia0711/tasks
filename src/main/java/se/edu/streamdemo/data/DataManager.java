@@ -37,7 +37,7 @@ public class DataManager {
             System.out.println("Cannot create file; reason: " + e.getMessage());
         }
     }
-
+    //files are system resources, so need exception
     private ArrayList readFile() throws IOException {
         if (!dataFile.exists()) {
             throw new FileNotFoundException();
@@ -48,7 +48,7 @@ public class DataManager {
         }
         ArrayList<String> dataItems = (ArrayList) Files.readAllLines(dataFile.toPath(), Charset.defaultCharset());
 
-        return dataItems;
+        return dataItems; //arraylist
     }
 
     public ArrayList<Task> loadData() {
@@ -69,7 +69,7 @@ public class DataManager {
             String taskType = getTaskType(line);
             switch (taskType) {
                 case "T":
-                    Todo todo = new Todo(taskDescription);
+                    Todo todo = new Todo(taskDescription); //store the subclass to a superclass array, substitutability
                     allTasks.add(todo);
                     break;
                 case "D":
@@ -96,7 +96,7 @@ public class DataManager {
     }
 
     private static String getTaskDescription(String inputLine) {
-        String taskDescription = inputLine.substring(4);
+        String taskDescription = inputLine.substring(4); //E,D,T
         return taskDescription;
     }
 }
